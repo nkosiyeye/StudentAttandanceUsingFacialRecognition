@@ -1,0 +1,123 @@
+{% extends "base_admin.html"%}
+{% block content%}
+      <section class="container1">
+        <header>Add Student</header>
+        <form
+          action="/admin/add_student"
+          method="post"
+          class="form"
+          enctype="multipart/form-data"
+        >
+          <div class="input-box">
+            <label>ID</label>
+            <input
+              type="text"
+              placeholder="Enter the student unique ID"
+              name="id"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>Full Name</label>
+            <input
+              type="text"
+              placeholder="Enter full name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="Enter the password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>Email Address</label>
+            <input
+              type="email"
+              placeholder="Enter email address"
+              name="email"
+              required
+            />
+          </div>
+          <div class="column">
+            <div class="input-box">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                placeholder="Enter phone number"
+                name="phone"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label>Birth Date</label>
+              <input
+                type="date"
+                placeholder="Enter birth date"
+                name="dob"
+                required
+              />
+            </div>
+          </div>
+          <div class="input-box address">
+            <label>Major</label>
+            <div class="column">              
+              <div class="select-box">
+                <select name="major">
+                    <option hidden>Major</option>
+                    {% for id, major in majors.items() %}
+                    <option value='{{ id }}'>{{ major.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>            
+            <div class="select-box">
+              <select name="year">
+                  <option hidden>Year</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+              </select>
+          </div>
+            </div>
+          </div>
+          <div class="input-box">
+            <label>Starting Year</label>
+            <input
+              type="number"
+              placeholder="Enter the Starting Year"
+              name="starting_year"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label>Notes</label>
+            <input
+              type="textarea"
+              placeholder="Enter any notes"
+              name="content"
+              required
+            />
+          </div>
+
+          <div class="input-box">
+            <label>Upload Image</label>
+            <input
+              type="file"
+              placeholder="Upload the new student image"
+              name="image"
+              value="image"
+              required
+            />
+          </div>
+          <button>Submit</button>
+        </form>
+      </section>
+    </div>
+    {%endblock%}
+

@@ -1,0 +1,32 @@
+
+{% extends "base.html"%}
+{% block link%} 
+{% endblock %}
+{%block content%}
+    <div class="container">
+      <section class="attendance">
+        <div class="attendance-list">
+          <h1>Attendance Record</h1>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Total Attendance</th>
+                <th>Last Attendance Time</th>
+              </tr>
+            </thead>
+            {% for student in data %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.total_attendance }}</td>
+                <td>{{ student.last_attendance_time }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </section>
+    </div>
+
+{% endblock %}

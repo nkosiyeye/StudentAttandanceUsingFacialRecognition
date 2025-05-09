@@ -1,0 +1,32 @@
+{% extends "base_admin.html"%}
+    {%block content%}
+    <section class="containerStudent">
+    <h2>Users</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Phonenumber</th>
+                    <th>Department</th>
+                    <th>UserType</th>
+                    <!-- Put  Status here -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for id, user in users.items() %}
+                <tr>
+                    <td>{{ id }}</td>
+                    <td>{{ user.fullname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phonenumber }}</td>
+                    <td>{{ user.department }}</td>
+                    <td>{{ user.usertype }}</td>
+                    <!-- Put Status here -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    {%endblock%}

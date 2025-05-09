@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{{ url_for('static', filename='styles/login.css') }}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      <form action="{{ url_for('admin_login') }}" method="post" 
+          class="form">
+          <div class="select-box">
+            <select name="major" id="majorSelect" required>
+                <option hidden>Major</option>
+                {% for id, major in majors.items() %}
+                <option value='{{ id }}'>{{ major.name }}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="select-box">
+            <select name="module" id="moduleSelect" required>
+                <option hidden>Modules</option>
+            </select>
+        </div>
+        <div class="txt_field">
+          <input type="text" name="username" required />
+          <span></span>
+          <label>Username</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" required />
+          <span></span>
+          <label>Password</label>
+        </div>        
+        <div class="bottom_text">
+          <label>
+            <input type="checkbox" name="adminCheck" value="1" />
+            Login as Admin
+          </label>
+        </div>
+        <input type="submit" value="Login" />
+        <div class="bottom_text">
+          Forgot Password. Please contact your teacher or IT Team.
+          <br />
+        </div>
+        <div class="bottom_text">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+      </form>
+    </div>
+    <script>
+      document.getElementById("majorSelect").addEventListener("change", function() {
+          var majorId = this.value;
+          var moduleSelect = document.getElementById("moduleSelect");
+      
+          // Clear previous modules
+          moduleSelect.innerHTML = '<option hidden>Modules</option>';
+      
+          if (majorId) {
+              fetch(`/get_modules/${majorId}`)
+              .then(response => response.json())
+              .then(data => {
+                  for (let id in data) {
+                      let option = document.createElement("option");
+                      option.value = id;
+                      option.textContent = data[id].name;
+                      moduleSelect.appendChild(option);
+                  }
+              })
+              .catch(error => console.error("Error fetching modules:", error));
+          }
+      });
+      </script>
+  </body>
+</html>

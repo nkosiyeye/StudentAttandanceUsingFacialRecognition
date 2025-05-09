@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+{% block link%}  
+<link
+href="{{ url_for('static', filename='styles/index.css') }}"
+rel="stylesheet"
+type="text/css"
+/>
+{% endblock %}
+{% block content%}
+<div class="container mt-5">
+    <form id="attendanceForm">
+      <div class="row">
+        <div class="form-group col-md-6">
+            <!-- <label for="moduleSelect">Select Module:</label> -->
+            <select class="form-control" id="moduleSelect" name="module">
+                <option value="{{ module_name['id'] }}">{{ module_name['name'] }}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">   
+            <button type="button" class="btn btn-primary mr-2" onclick="startAttendance()">Start Attendance</button>
+            <button type="button" class="btn btn-danger" onclick="stopAttendance()">Stop Attendance</button>
+            <a type="button" class="btn btn-success" href="{{url_for('student_attendance_list')}}">Attendance List({{numberOfAttendance}})</a>
+        </div>
+      </div>
+    </form>
+    <div class="mainFrame mt-5">
+        <img id="videoFrame" src="" />
+    </div>
+</div>
+
+<script>
+    function startAttendance() {
+        const moduleSelect = document.getElementById('moduleSelect');
+        const moduleId = moduleSelect.value;
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = `/video?module_id=${moduleId}`;
+    }
+
+    function stopAttendance() {
+        const videoFrame = document.getElementById('videoFrame');
+        videoFrame.src = "";
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base_admin.html"%}
+{% block content%}
+
+<section class="main">
+  <div class="main-top">
+    <h1>Admin Dashboard</h1>
+  </div>
+  <div class="users">
+    <div class="card">
+      <h4>Students Registered</h4>
+      <p>{{ data.num_students }}</p>
+    </div>
+    <div class="card">
+      <h4>Users/Teachers Registered</h4>
+      <p>{{ data.num_users }}</p>
+    </div>
+    <div class="card">
+      <h4>Majors</h4>
+      <p>{{ data.num_majors }}</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

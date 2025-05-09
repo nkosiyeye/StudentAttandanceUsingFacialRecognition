@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">  
+     
+    <link
+    href="{{ url_for('static', filename='styles/add_user.css') }}"
+    rel="stylesheet"
+    type="text/css"
+    />
+    {% block link%}  
+    {% endblock %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+        .dashboard-card {
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            display: block;
+        }
+        .dashboard-card:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
+        }
+        .icon {
+            font-size: 2rem;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary text-white" style="background-color: #2691d9;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="{{ url_for('index') }}">Attendance System</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('index') }}">Console</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content%}
+    {% endblock %}
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
